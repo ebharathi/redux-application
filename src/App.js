@@ -1,24 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
-
+import Navbar from './components/Navbar';
+import { UseSelector,useDispatch, useSelector } from 'react-redux';
+import { increment } from './redux/counter';
 function App() {
+  const dispatch=useDispatch();
+  const count=useSelector((state)=>state.counter.total)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+        <Navbar/>
+        Redux app -{count}
+        <button onClick={()=>dispatch(increment())}>+</button>
+      </div>
   );
 }
 
